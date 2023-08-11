@@ -55,13 +55,13 @@ public class Clase2_Ejemplo1 {
         
         
         /**/
-        int [] arreglo = {1,58,6,8,12,89,0};
+        //int [] arreglo = {1,58,6,8,12,89,0};
         //int [] arreglo2 = new int[15];
         //ordenamientoBurbuja(arreglo);
         //ordenamientoPorSeleccion(arreglo);
         //obtenerDatos();
         //menu();
-        menuEstudiante();
+        //menuEstudiante();
     }
     
     /* Ejemplos de metodos */
@@ -136,7 +136,7 @@ public class Clase2_Ejemplo1 {
         }
         mostrarArreglo(arreglo);
     }
-    
+   
        
     public static void ordenamientoPorSeleccion(int [] arreglo){
         mostrarArreglo(arreglo);
