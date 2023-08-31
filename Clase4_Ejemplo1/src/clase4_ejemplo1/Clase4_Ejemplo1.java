@@ -7,6 +7,7 @@ package clase4_ejemplo1;
 
 import Clases.DatosEnviados;
 import Clases.ListaUsuarios;
+import Grafico.Admin.PrincipalAdmin;
 import Grafico.Principal;
 import Grafico.Registro;
 
@@ -29,9 +30,16 @@ public class Clase4_Ejemplo1 {
 //        listUser.agregarUsuario(123456, "Salvador", "Lopez");
 
         DatosEnviados datosEnviados = new DatosEnviados();
-        Principal p = new Principal();
-        p.setVisible(true);
-        p.recibirDatos(datosEnviados);
+        datosEnviados.listDescuentos.Agregar(3, 4);
+//        Principal p = new Principal();
+//        p.setVisible(true);
+//        p.recibirDatos(datosEnviados);
+        
+        PrincipalAdmin admin = new PrincipalAdmin();
+        admin.setVisible(true);
+        admin.recibirDatos(datosEnviados);
+        
+        
     }
     
 }

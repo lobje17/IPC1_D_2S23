@@ -6,6 +6,7 @@
 package Grafico;
 
 import Clases.DatosEnviados;
+import Grafico.Admin.PrincipalAdmin;
 import javax.swing.JOptionPane;
 
 /**
@@ -14,11 +15,15 @@ import javax.swing.JOptionPane;
  */
 public class Principal extends javax.swing.JFrame {
     DatosEnviados datosEnviados;
+    private String nombre;
+    private String password;
     /**
      * Creates new form Principal
      */
     public Principal() {
         initComponents();
+        this.nombre = "";
+        this.password = "";
     }
     
     public void recibirDatos(DatosEnviados datosEnviados){
@@ -114,7 +119,7 @@ public class Principal extends javax.swing.JFrame {
         // TODO add your handling code here:
         String user = txtUsuario.getText();
         String pass = txtPassword.getText();
-        JOptionPane.showMessageDialog(null, "Los datos obtenidos son:\n "+user+"\n "+pass);
+        verificarCamposLlenos();
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void btnRegistroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistroActionPerformed
@@ -125,7 +130,52 @@ public class Principal extends javax.swing.JFrame {
         this.dispose();
         
     }//GEN-LAST:event_btnRegistroActionPerformed
-
+    
+    /* ************************************************************
+       ************************************************************ */
+    private void verificarCamposLlenos(){
+        this.nombre = txtUsuario.getText();
+        this.password = txtPassword.getText();
+        
+        String incompleto = "";
+        if(nombre.equals(""))   incompleto += "\nNombre, ";
+        if(password.equals("")) incompleto += "\nPassword";
+        
+        if(!incompleto.equals("")) Mensaje("El o los campos de "+incompleto+"\nson obligatorios");
+        else {
+            verificarDatos();
+        }
+    }
+    /* ************************************************************
+       ************************************************************ */
+    private void verificarDatos(){
+        int ok = datosEnviados.listUsuarios.loginOk(password, nombre);
+        switch (ok) {
+            case 1:
+                irVentanaAdmin();
+                break;
+            case 2:
+                Mensaje("No existe un usuario con el nit "+password);
+                break;
+            default:
+                Mensaje("El nombre del usuario no coincide");
+                break;
+        }
+    }
+    
+    private void irVentanaAdmin(){
+       PrincipalAdmin r = new PrincipalAdmin();
+        r.setVisible(true);
+        r.recibirDatos(datosEnviados);
+        this.dispose();
+    }
+    /* ************************************************************
+       ************************************************************ */
+    
+    private void Mensaje(String msj){
+        JOptionPane.showMessageDialog(null, msj);
+    }
+    
     /**
      * @param args the command line arguments
      */

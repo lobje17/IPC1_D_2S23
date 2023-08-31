@@ -9,7 +9,7 @@ package Clases;
  *
  * @author lobje
  */
-public class Descuento {
+public class Descuento implements Comparable<Descuento>{
     private int numDias;
     private int porcentaje;
 
@@ -37,5 +37,10 @@ public class Descuento {
     public void MostrarDatos(){
         System.out.print("Numero de dias: "+numDias);
         System.out.print("  Porcentaje de descuento: "+porcentaje+"\n");
+    }
+
+    @Override
+    public int compareTo(Descuento desc) {
+        return Integer.compare(this.numDias, desc.getNumDias());
     }
 }

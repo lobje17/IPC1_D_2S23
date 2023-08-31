@@ -6,6 +6,7 @@
 package Clases;
 
 import java.util.ArrayList;
+import java.util.Collections;
 
 /**
  *
@@ -16,16 +17,18 @@ public class ListDescuento {
     private ArrayList<Descuento> listDescuento;
 
     public ListDescuento() {
-        listDescuento = new ArrayList<>();
+        this.listDescuento = new ArrayList<>();
     }
     
-    public void Agregar(int numDias, int porcentaje){
+    public boolean Agregar(int numDias, int porcentaje){
         if(!existeDescuento(numDias)){
             listDescuento.add(new Descuento(numDias, porcentaje));
             mensaje("Se registro el descuento");
+            return true;
         }
         else{
             mensaje("Ya existe un descuento para "+numDias+" dias");
+            return false;
         }
     }
     
@@ -56,5 +59,17 @@ public class ListDescuento {
     
     private void mensaje(String msj){
         System.out.println(msj);
+    }
+    
+    public void ordenarDescuento(){
+        Collections.sort(listDescuento);
+    }
+    
+    public int cantidad(){
+        return this.listDescuento.size();
+    }
+    
+    public Descuento getElemento(int i){
+        return this.listDescuento.get(i);
     }
 }

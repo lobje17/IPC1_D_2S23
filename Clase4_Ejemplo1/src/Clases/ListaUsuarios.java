@@ -24,11 +24,18 @@ public class ListaUsuarios {
         else return false; // "El usuario ya esta registrado"
     }
     
-    public boolean loginOk(String nit){
-        if(!existeUsuario(nit)) return true;
-        
-        mensaje("No existe un usuario con el nit "+nit);
-        return false;
+    public int loginOk(String nit, String nombre){
+        /*
+            1 = Todos los datos estan correcto
+            2 = El nit no existe
+            3 = El nombre no concide
+        */
+        Usuarios user = existeUsuarioLogin(nit);
+        if(user!=null) {
+            if(user.getNombre().equals(nombre)) return 1;
+            return 3;
+        }
+        return 2;
     }
     
     private boolean existeUsuario(String nit){
@@ -38,6 +45,15 @@ public class ListaUsuarios {
             if(listUsuarios.get(i).getNit().equals(nit)) return true;
         }
         return false;
+    }
+    
+    private Usuarios existeUsuarioLogin(String nit){
+        int tam = listUsuarios.size();
+        
+        for (int i = 0; i < tam; i++) {
+            if(listUsuarios.get(i).getNit().equals(nit)) return listUsuarios.get(i);
+        }
+        return null;
     }
     
     public void mostrarUsuarios(){

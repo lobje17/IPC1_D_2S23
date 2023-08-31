@@ -154,6 +154,7 @@ public class Registro extends javax.swing.JFrame {
 
     private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
         // TODO add your handling code here:
+        regresarLogin();
     }//GEN-LAST:event_btnCancelarActionPerformed
 
     /* ************************************************************
@@ -170,7 +171,10 @@ public class Registro extends javax.swing.JFrame {
         if(apellido.equals("")) incompleto += "\nApellido";
         
         if(!incompleto.equals("")) Mensaje("El o los campos de "+incompleto+"\nson obligatorios");
-        else almacenarInfo();
+        else {
+            almacenarInfo();
+            regresarLogin();
+        }
         
     }
     
@@ -187,10 +191,15 @@ public class Registro extends javax.swing.JFrame {
     /* ************************************************************
                         Regresar al login
        ************************************************************ */
+    private void regresarLogin(){
+        Principal login = new Principal();
+        login.recibirDatos(datosEnviados);
+        login.setVisible(true);
+        this.dispose();
+    }
     
     /* ************************************************************
        ************************************************************ */
-    
     private void Mensaje(String msj){
         JOptionPane.showMessageDialog(null, msj);
     }
