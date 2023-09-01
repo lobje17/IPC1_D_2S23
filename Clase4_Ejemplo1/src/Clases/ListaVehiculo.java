@@ -5,13 +5,14 @@
  */
 package Clases;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 /**
  *
  * @author lobje
  */
-public class ListaVehiculo {
+public class ListaVehiculo  implements Serializable{
     private ArrayList<Vehiculos> listVehiculo;
 
     public ListaVehiculo() {

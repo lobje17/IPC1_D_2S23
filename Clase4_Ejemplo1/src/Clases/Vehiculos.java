@@ -5,11 +5,13 @@
  */
 package Clases;
 
+import java.io.Serializable;
+
 /**
  *
  * @author lobje
  */
-public class Vehiculos {
+public class Vehiculos implements Serializable{
     private String marca;
     private String linea;
     private int modelo;

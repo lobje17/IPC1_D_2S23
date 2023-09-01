@@ -5,11 +5,13 @@
  */
 package Clases;
 
+import java.io.Serializable;
+
 /**
  *
  * @author lobje
  */
-public class Descuento implements Comparable<Descuento>{
+public class Descuento implements Comparable<Descuento>, Serializable{
     private int numDias;
     private int porcentaje;
 

@@ -179,8 +179,8 @@ public class Registro extends javax.swing.JFrame {
     }
     
     public void almacenarInfo(){
-        boolean reg = datosEnviados.listUsuarios.agregarUsuario(nit, nombre, apellido);
-        if(reg) Mensaje("Usuario registrados correctamente");
+        boolean ok = datosEnviados.listUsuarios.agregarUsuario(nit, nombre, apellido);
+        if(ok)  Mensaje("Usuario registrados correctamente");
         else    Mensaje("El nit ya existe en el sistema\nRevise sus datos");
         
         this.txtNit.setText("");

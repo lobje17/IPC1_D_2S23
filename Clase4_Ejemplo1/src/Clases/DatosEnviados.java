@@ -5,11 +5,14 @@
  */
 package Clases;
 
+import java.io.Serializable;
+
 /**
  *
  * @author lobje
  */
-public class DatosEnviados {
+public class DatosEnviados implements Serializable{
+    
     public ListDescuento listDescuentos;
     public ListaUsuarios listUsuarios;
     public ListaVehiculo listVehiculos;

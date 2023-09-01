@@ -164,7 +164,7 @@ public class Principal extends javax.swing.JFrame {
     }
     
     private void irVentanaAdmin(){
-       PrincipalAdmin r = new PrincipalAdmin();
+        PrincipalAdmin r = new PrincipalAdmin();
         r.setVisible(true);
         r.recibirDatos(datosEnviados);
         this.dispose();

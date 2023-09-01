@@ -6,6 +6,7 @@
 package Grafico.Admin;
 
 import Clases.DatosEnviados;
+import Grafico.Principal;
 
 /**
  *
@@ -79,6 +80,11 @@ public class PrincipalAdmin extends javax.swing.JFrame {
         btnSalir.setFont(new java.awt.Font("Times New Roman", 3, 12)); // NOI18N
         btnSalir.setForeground(new java.awt.Color(255, 255, 255));
         btnSalir.setText("Salir");
+        btnSalir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSalirActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -120,6 +126,14 @@ public class PrincipalAdmin extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalirActionPerformed
+        // TODO add your handling code here:
+        Principal login = new Principal();
+        login.setVisible(true);
+        login.recibirDatos(datosEnviados);
+        this.dispose();
+    }//GEN-LAST:event_btnSalirActionPerformed
 
     
     

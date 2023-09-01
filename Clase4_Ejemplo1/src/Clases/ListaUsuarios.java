@@ -1,12 +1,13 @@
 package Clases;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 /**
  *
  * @author lobje
  */
-public class ListaUsuarios {
+public class ListaUsuarios  implements Serializable{
     private ArrayList<Usuarios> listUsuarios;
 
     public ListaUsuarios() {

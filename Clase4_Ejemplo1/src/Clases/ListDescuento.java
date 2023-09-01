@@ -5,6 +5,7 @@
  */
 package Clases;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collections;
 
@@ -12,7 +13,7 @@ import java.util.Collections;
  *
  * @author lobje
  */
-public class ListDescuento {
+public class ListDescuento  implements Serializable{
     
     private ArrayList<Descuento> listDescuento;
 

@@ -30,14 +30,15 @@ public class Clase4_Ejemplo1 {
 //        listUser.agregarUsuario(123456, "Salvador", "Lopez");
 
         DatosEnviados datosEnviados = new DatosEnviados();
-        datosEnviados.listDescuentos.Agregar(3, 4);
-//        Principal p = new Principal();
-//        p.setVisible(true);
-//        p.recibirDatos(datosEnviados);
+        //datosEnviados.listDescuentos.Agregar(3, 4);
+        datosEnviados.listUsuarios.agregarUsuario("a", "a", "a");
+        Principal p = new Principal();
+        p.setVisible(true);
+        p.recibirDatos(datosEnviados);
         
-        PrincipalAdmin admin = new PrincipalAdmin();
-        admin.setVisible(true);
-        admin.recibirDatos(datosEnviados);
+//        PrincipalAdmin admin = new PrincipalAdmin();
+//        admin.setVisible(true);
+//        admin.recibirDatos(datosEnviados);
         
         
     }
