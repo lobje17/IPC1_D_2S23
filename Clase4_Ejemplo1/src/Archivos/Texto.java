@@ -5,7 +5,7 @@
  */
 package Archivos;
 
-import Clases.ListDescuento;
+import Clases.Descuentos.ListDescuento;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import javax.swing.JFileChooser;
@@ -39,6 +39,7 @@ public class Texto {
             
             String linea = "";
             String contenido = "";
+            
             while ((linea=br.readLine())!= null) {                
                 contenido += linea+"\n";
             }
@@ -55,16 +56,16 @@ public class Texto {
         int cant = listado.length;
         int dias;
         int porcentaje;
-        System.out.println("Cant "+cant);
+        
         for (int i = 0; i < cant; i++) {
-            //System.out.println(listado[i]);
             String [] valores = listado[i].split(",");
             dias = convertNum(valores[0]);
             porcentaje = convertNum(valores[1]);
-            System.out.println(valores[0]+"  "+valores[1]);
+            System.out.println(valores[0]+" - "+valores[1]);
             lista.Agregar(dias, porcentaje);
         }
     }
+    
     private int convertNum(String val){
         try {
             return Integer.parseInt(val);

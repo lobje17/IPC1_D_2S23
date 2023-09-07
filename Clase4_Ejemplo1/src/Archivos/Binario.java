@@ -5,7 +5,8 @@
  */
 package Archivos;
 
-import Clases.ListDescuento;
+import Clases.Descuentos.ListDescuento;
+import Clases.Vehiculos.ListaVehiculos;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
@@ -17,15 +18,27 @@ import java.io.ObjectOutputStream;
  * @author lobje
  */
 public class Binario {
-    String descuentos;
+    private String pathDescuentos;
+    private String pathVehiculos;
+    /* IMPORTACION DE CLASES PARA ESCRITURA */
+    private FileOutputStream fos;
+    private ObjectOutputStream oos;
+    /* IMPORTACION DE CLASES PARA LECTURA */
+    private FileInputStream fis;
+    private ObjectInputStream ois; 
+    
     public Binario() {
-        this.descuentos = "Archivos//Descuentos.bin";
+        this.pathDescuentos = "Archivos//Descuentos.bin";
+        this.pathVehiculos = "Archivos//Vehiculos.bin";
     }
     
-    public boolean guardar(ListDescuento lista){
+    /* **********************************************************************
+     * ***************************** DESCUENTOS *****************************
+     * ********************************************************************** */
+    public boolean guardarDescuentos(ListDescuento lista){
         try {
-            FileOutputStream fos = new FileOutputStream(descuentos);
-            ObjectOutputStream oos = new ObjectOutputStream(fos);
+            fos = new FileOutputStream(pathDescuentos);
+            oos = new ObjectOutputStream(fos);
             oos.writeObject(lista);
             oos.close();
             fos.close();
@@ -35,20 +48,54 @@ public class Binario {
         }
     }
     
-    public ListDescuento obtener(){
-        ListDescuento lista = new ListDescuento();
+    public ListDescuento obtenerDescuentos(){
+        ListDescuento lista;
         try {
-            File f = new File(descuentos);
+            File f = new File(pathDescuentos);
             if(f.exists()){
-                FileInputStream fis = new FileInputStream(descuentos);
-                ObjectInputStream ois = new ObjectInputStream(fis);
+                fis = new FileInputStream(pathDescuentos);
+                ois = new ObjectInputStream(fis);
                 lista = (ListDescuento) ois.readObject();
                 ois.close();
                 fis.close();
+                return lista;
             }
-            return lista;
+            return new ListDescuento();
         } catch (Exception e) {
-            return lista;
+            return new ListDescuento();
+        }
+    }
+    
+    /* **********************************************************************
+     * ***************************** VEHICULOS  *****************************
+     * ********************************************************************** */
+    public boolean guardarVehiculos(ListaVehiculos lista){
+        try {
+            fos = new FileOutputStream(pathVehiculos);
+            oos = new ObjectOutputStream(fos);
+            oos.writeObject(lista);
+            oos.close();
+            fos.close();
+            return true;
+        } catch (Exception e) {
+            return false;
+        }
+    }
+    
+    public ListaVehiculos obtenerVehiculos(){
+        try {
+            File f = new File(pathVehiculos);
+            if(f.exists()){
+                fis = new FileInputStream(pathVehiculos);
+                ois = new ObjectInputStream(fis);
+                ListaVehiculos lista = (ListaVehiculos) ois.readObject();
+                ois.close();
+                fis.close();
+                return lista;
+            }
+            return new ListaVehiculos();
+        } catch (Exception e) {
+            return new ListaVehiculos();
         }
     }
     

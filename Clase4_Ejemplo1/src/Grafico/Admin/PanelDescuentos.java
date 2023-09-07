@@ -5,10 +5,9 @@
  */
 package Grafico.Admin;
 
-import Archivos.Binario;
 import Archivos.Texto;
 import Clases.DatosEnviados;
-import Clases.Descuento;
+import Clases.Descuentos.Descuento;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
@@ -20,14 +19,12 @@ public class PanelDescuentos extends javax.swing.JPanel {
     
     DefaultTableModel modeloTabla;
     DatosEnviados datosEnviados;
-    Binario binario;
     Texto texto;
     /**
      * Creates new form Descuentos
      */
     public PanelDescuentos() {
         initComponents();
-        this.binario = new Binario();
         this.texto = new Texto();
     }
     
@@ -36,8 +33,9 @@ public class PanelDescuentos extends javax.swing.JPanel {
         llenarTabla();
     }
 
-    /* ************************************************************
-       ************************************************************ */
+    /* **********************************************************************
+     * ********************** TABLA PARA MOSTRAR DATOS **********************
+     * ********************************************************************** */
     public void llenarTabla(){
         this.modeloTabla = new DefaultTableModel();
         modeloTabla.addColumn("No.");
@@ -66,6 +64,21 @@ public class PanelDescuentos extends javax.swing.JPanel {
         return String.valueOf(val);
     }
     
+    /* **********************************************************************
+     * ************************** ARCHIVO BINARIO  **************************
+     * ********************************************************************** */    
+    private void guardarData(){
+        boolean ok = this.datosEnviados.almacenarDescuentosBin();
+        if(ok)  Mensaje("Se guardaron los datos");
+        else    Mensaje("Ocurrio un error, no se guardaron los datos");
+    }
+    
+    private void recuparaData(){
+        datosEnviados.obtenerDescuentos();
+        llenarTabla();
+        Mensaje("Datos cargados");
+    }
+    
     /* ************************************************************
        ************************************************************ */
 
@@ -84,20 +97,24 @@ public class PanelDescuentos extends javax.swing.JPanel {
         btnAgregarDescuento = new javax.swing.JButton();
         btnCargamasiva = new javax.swing.JButton();
         btnGuardaDatos = new javax.swing.JButton();
+        jButton1 = new javax.swing.JButton();
 
-        setBackground(new java.awt.Color(102, 255, 0));
+        setBackground(new java.awt.Color(0, 0, 102));
         setPreferredSize(new java.awt.Dimension(600, 400));
 
         btncargaDatos.setBackground(new java.awt.Color(255, 153, 0));
-        btncargaDatos.setFont(new java.awt.Font("Times New Roman", 3, 14)); // NOI18N
-        btncargaDatos.setForeground(new java.awt.Color(255, 255, 255));
-        btncargaDatos.setText("Carga de datos");
+        btncargaDatos.setFont(new java.awt.Font("Times New Roman", 3, 12)); // NOI18N
+        btncargaDatos.setForeground(new java.awt.Color(0, 0, 0));
+        btncargaDatos.setText("Carga datos");
         btncargaDatos.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btncargaDatosActionPerformed(evt);
             }
         });
 
+        tablaDescuento.setBackground(new java.awt.Color(255, 255, 0));
+        tablaDescuento.setFont(new java.awt.Font("Times New Roman", 0, 12)); // NOI18N
+        tablaDescuento.setForeground(new java.awt.Color(0, 0, 0));
         tablaDescuento.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {},
@@ -112,19 +129,19 @@ public class PanelDescuentos extends javax.swing.JPanel {
         tablaDescuento.setAutoResizeMode(javax.swing.JTable.AUTO_RESIZE_ALL_COLUMNS);
         jScrollPane1.setViewportView(tablaDescuento);
 
-        btnAgregarDescuento.setBackground(new java.awt.Color(0, 102, 0));
-        btnAgregarDescuento.setFont(new java.awt.Font("Times New Roman", 3, 14)); // NOI18N
-        btnAgregarDescuento.setForeground(new java.awt.Color(255, 255, 255));
-        btnAgregarDescuento.setText("Agregar descuento");
+        btnAgregarDescuento.setBackground(new java.awt.Color(255, 153, 0));
+        btnAgregarDescuento.setFont(new java.awt.Font("Times New Roman", 3, 12)); // NOI18N
+        btnAgregarDescuento.setForeground(new java.awt.Color(0, 0, 0));
+        btnAgregarDescuento.setText("Agregar");
         btnAgregarDescuento.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnAgregarDescuentoActionPerformed(evt);
             }
         });
 
-        btnCargamasiva.setBackground(new java.awt.Color(0, 0, 102));
-        btnCargamasiva.setFont(new java.awt.Font("Times New Roman", 3, 14)); // NOI18N
-        btnCargamasiva.setForeground(new java.awt.Color(255, 255, 255));
+        btnCargamasiva.setBackground(new java.awt.Color(255, 153, 0));
+        btnCargamasiva.setFont(new java.awt.Font("Times New Roman", 3, 12)); // NOI18N
+        btnCargamasiva.setForeground(new java.awt.Color(0, 0, 0));
         btnCargamasiva.setText("Carga masiva");
         btnCargamasiva.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -132,6 +149,9 @@ public class PanelDescuentos extends javax.swing.JPanel {
             }
         });
 
+        btnGuardaDatos.setBackground(new java.awt.Color(255, 153, 0));
+        btnGuardaDatos.setFont(new java.awt.Font("Times New Roman", 3, 12)); // NOI18N
+        btnGuardaDatos.setForeground(new java.awt.Color(0, 0, 0));
         btnGuardaDatos.setText("Guardar datos");
         btnGuardaDatos.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -139,24 +159,35 @@ public class PanelDescuentos extends javax.swing.JPanel {
             }
         });
 
+        jButton1.setBackground(new java.awt.Color(255, 153, 0));
+        jButton1.setFont(new java.awt.Font("Times New Roman", 3, 12)); // NOI18N
+        jButton1.setForeground(new java.awt.Color(0, 0, 0));
+        jButton1.setText("Eliminar");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jScrollPane1)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(btnGuardaDatos, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(btnGuardaDatos, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(btncargaDatos, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(12, 12, 12)
-                        .addComponent(btnCargamasiva, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btncargaDatos, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(btnAgregarDescuento)
-                        .addGap(60, 60, 60)))
+                        .addComponent(btnCargamasiva, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(btnAgregarDescuento, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 43, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -167,32 +198,27 @@ public class PanelDescuentos extends javax.swing.JPanel {
                     .addComponent(btncargaDatos)
                     .addComponent(btnAgregarDescuento)
                     .addComponent(btnCargamasiva)
-                    .addComponent(btnGuardaDatos))
+                    .addComponent(btnGuardaDatos)
+                    .addComponent(jButton1))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 331, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 335, Short.MAX_VALUE)
                 .addGap(18, 18, 18))
         );
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnAgregarDescuentoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarDescuentoActionPerformed
         // TODO add your handling code here:
-        VentanaDescuento vd = new VentanaDescuento();
+        VentanaRegistroDescuento vd = new VentanaRegistroDescuento();
         vd.setVisible(true);
         vd.recibirDatos(datosEnviados, this);
     }//GEN-LAST:event_btnAgregarDescuentoActionPerformed
 
     private void btnGuardaDatosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardaDatosActionPerformed
-        // TODO add your handling code here:
-        boolean ok = binario.guardar(datosEnviados.listDescuentos);
-        if(ok)  Mensaje("Se guardaron los datos");
-        else    Mensaje("Ocurrio un error, no se guardaron los datos");
+        guardarData();
     }//GEN-LAST:event_btnGuardaDatosActionPerformed
 
     private void btncargaDatosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btncargaDatosActionPerformed
-        // TODO add your handling code here:
-        datosEnviados.listDescuentos = binario.obtener();
-        llenarTabla();
-        Mensaje("Datos cargados");
+        recuparaData();
     }//GEN-LAST:event_btncargaDatosActionPerformed
 
     private void btnCargamasivaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCargamasivaActionPerformed
@@ -202,6 +228,10 @@ public class PanelDescuentos extends javax.swing.JPanel {
         llenarTabla();
         Mensaje("Datos cargados");
     }//GEN-LAST:event_btnCargamasivaActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton1ActionPerformed
 
 
 
@@ -216,6 +246,7 @@ public class PanelDescuentos extends javax.swing.JPanel {
     private javax.swing.JButton btnCargamasiva;
     private javax.swing.JButton btnGuardaDatos;
     private javax.swing.JButton btncargaDatos;
+    private javax.swing.JButton jButton1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable tablaDescuento;
     // End of variables declaration//GEN-END:variables

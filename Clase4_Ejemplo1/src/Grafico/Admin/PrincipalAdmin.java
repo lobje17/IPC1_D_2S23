@@ -14,8 +14,12 @@ import Grafico.Principal;
  */
 public class PrincipalAdmin extends javax.swing.JFrame {
 
-    DatosEnviados datosEnviados;
-    PanelDescuentos panelDescuento;
+    private DatosEnviados datosEnviados;
+    /* Paneles */
+    private PanelDescuentos panelDescuento;
+    private PanelVehiculos panelVehiculos;
+    private PanelGraficaPie panelGrafica;
+    
     private int widthPanel;
     private int heightPanel;
     private int widthTab;
@@ -44,7 +48,20 @@ public class PrincipalAdmin extends javax.swing.JFrame {
         this.panelDescuento.setSize(widthPanel, heightPanel);
         this.panelDescuento.recibirDatos(datosEnviados);
         
+        this.panelVehiculos = new PanelVehiculos();
+        this.panelVehiculos.setVisible(true);
+        this.panelVehiculos.setSize(widthPanel, heightPanel);
+        this.panelVehiculos.recibirDatos(datosEnviados);
+        
+        this.panelGrafica = new PanelGraficaPie();
+        this.panelGrafica.setVisible(true);
+        this.panelGrafica.setSize(widthPanel, heightPanel);
+        this.panelGrafica.recibirDatos(datosEnviados);
+        
         this.tabAdmin.addTab("Descuentos", this.panelDescuento);
+        this.tabAdmin.addTab("Vehiculos", this.panelVehiculos);
+        this.tabAdmin.addTab("Vehiculos", this.panelGrafica);
+        
         this.tabAdmin.setSize(widthPanel, heightPanel);
         this.jPanel1.setSize(widthTab, heightTab);
         this.setSize(widthTab, heightTab);
