@@ -19,6 +19,7 @@ public class PrincipalAdmin extends javax.swing.JFrame {
     private PanelDescuentos panelDescuento;
     private PanelVehiculos panelVehiculos;
     private PanelGraficaPie panelGrafica;
+    private PanelGraficaBarras panelGraficaBarras;
     
     private int widthPanel;
     private int heightPanel;
@@ -58,9 +59,15 @@ public class PrincipalAdmin extends javax.swing.JFrame {
         this.panelGrafica.setSize(widthPanel, heightPanel);
         this.panelGrafica.recibirDatos(datosEnviados);
         
+        this.panelGraficaBarras = new PanelGraficaBarras();
+        this.panelGraficaBarras.setVisible(true);
+        this.panelGraficaBarras.setSize(widthPanel, heightPanel);
+        this.panelGraficaBarras.recibirDatos(datosEnviados);
+        
         this.tabAdmin.addTab("Descuentos", this.panelDescuento);
         this.tabAdmin.addTab("Vehiculos", this.panelVehiculos);
-        this.tabAdmin.addTab("Vehiculos", this.panelGrafica);
+        this.tabAdmin.addTab("Grafica Pie", this.panelGrafica);
+        this.tabAdmin.addTab("Grafica Barras", this.panelGraficaBarras);
         
         this.tabAdmin.setSize(widthPanel, heightPanel);
         this.jPanel1.setSize(widthTab, heightTab);

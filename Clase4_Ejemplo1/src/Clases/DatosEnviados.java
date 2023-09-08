@@ -6,6 +6,7 @@
 package Clases;
 
 import Archivos.Binario;
+import Archivos.Texto;
 import Clases.Descuentos.ListDescuento;
 import Clases.Usuarios.ListaUsuarios;
 import Clases.Vehiculos.ListaVehiculos;
@@ -22,12 +23,15 @@ public class DatosEnviados implements Serializable{
     public ListaUsuarios listUsuarios;
     public ListaVehiculos listVehiculos;
     Binario binario;
+    Texto texto;
+    String path;
 
     public DatosEnviados() {
         this.listDescuentos = new ListDescuento();
         this.listUsuarios = new ListaUsuarios();
         this.listVehiculos = new ListaVehiculos();
         this.binario = new Binario();
+        this.texto = new Texto();
     }
     
     public Vehiculo getVehiculos(int i){
@@ -52,5 +56,15 @@ public class DatosEnviados implements Serializable{
     
     public void obtenerVehiculos(){
         this.listVehiculos = this.binario.obtenerVehiculos();
+    }
+    
+    public void cargarMasivaDescuentos(){
+        path = texto.Buscar();
+        texto.cargarDescuentos(path, this.listDescuentos);
+    }
+    
+    public void cargarMasivaVehiculos(){
+        path = texto.Buscar();
+        texto.cargarVehiculos(path, this.listVehiculos);
     }
 }

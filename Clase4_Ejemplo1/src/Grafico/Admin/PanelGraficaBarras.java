@@ -9,21 +9,24 @@ import Clases.DatosEnviados;
 import Clases.Vehiculos.DataSetGrafica;
 import java.awt.BorderLayout;
 import java.awt.Dimension;
-import org.jfree.chart.*;
+import org.jfree.chart.ChartFactory;
+import org.jfree.chart.ChartPanel;
+import org.jfree.chart.JFreeChart;
+import org.jfree.data.category.DefaultCategoryDataset;
 import org.jfree.data.general.DefaultPieDataset;
 
 /**
  *
  * @author lobje
  */
-public class PanelGraficaPie extends javax.swing.JPanel {
+public class PanelGraficaBarras extends javax.swing.JPanel {
     DatosEnviados datosEnviados;
-    DefaultPieDataset datos;
+    DefaultCategoryDataset datos;
     DataSetGrafica dg;
     /**
-     * Creates new form PanelGraficaPie
+     * Creates new form PanelGraficaBarras
      */
-    public PanelGraficaPie() {
+    public PanelGraficaBarras() {
         initComponents();
     }
 
@@ -40,7 +43,7 @@ public class PanelGraficaPie extends javax.swing.JPanel {
     private void generarGrafica(){
         this.panelGrafica.removeAll();
         
-        datos = new DefaultPieDataset();
+        datos = new DefaultCategoryDataset();
         dg = new DataSetGrafica(this.datosEnviados.listVehiculos);
         dg.calcularDatos();
         
@@ -49,9 +52,7 @@ public class PanelGraficaPie extends javax.swing.JPanel {
             agregarDatos(String.valueOf(dg.getVal(i).modelo), dg.getVal(i).getCantidad());
         }
         
-        JFreeChart c = ChartFactory.createPieChart(
-                "Grafica de Pie de Modelos de vehiculos",
-                datos);
+        JFreeChart c = ChartFactory.createBarChart("Grafica de barras del Modelo", "Grafica", "", datos);
         
         ChartPanel p = new ChartPanel(c);
         p.setPreferredSize(new Dimension(300, 350));
@@ -61,15 +62,10 @@ public class PanelGraficaPie extends javax.swing.JPanel {
         this.panelGrafica.repaint();
     }
     
-    private void agregarDatos(String nombre, int porcentaje){
-        datos.setValue(nombre, porcentaje);
+    private void agregarDatos(String nombre, int cantidad){
+        datos.setValue(cantidad, "Modelo", nombre);
     }
-    
-    
-    
-    
-    
-    
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -79,19 +75,8 @@ public class PanelGraficaPie extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        panelGrafica = new javax.swing.JPanel();
         btnActualizar = new javax.swing.JButton();
-
-        javax.swing.GroupLayout panelGraficaLayout = new javax.swing.GroupLayout(panelGrafica);
-        panelGrafica.setLayout(panelGraficaLayout);
-        panelGraficaLayout.setHorizontalGroup(
-            panelGraficaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 550, Short.MAX_VALUE)
-        );
-        panelGraficaLayout.setVerticalGroup(
-            panelGraficaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 341, Short.MAX_VALUE)
-        );
+        panelGrafica = new javax.swing.JPanel();
 
         btnActualizar.setText("Actualizar");
         btnActualizar.addActionListener(new java.awt.event.ActionListener() {
@@ -99,6 +84,17 @@ public class PanelGraficaPie extends javax.swing.JPanel {
                 btnActualizarActionPerformed(evt);
             }
         });
+
+        javax.swing.GroupLayout panelGraficaLayout = new javax.swing.GroupLayout(panelGrafica);
+        panelGrafica.setLayout(panelGraficaLayout);
+        panelGraficaLayout.setHorizontalGroup(
+            panelGraficaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+        panelGraficaLayout.setVerticalGroup(
+            panelGraficaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 352, Short.MAX_VALUE)
+        );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -110,7 +106,7 @@ public class PanelGraficaPie extends javax.swing.JPanel {
                     .addComponent(panelGrafica, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(btnActualizar)
-                        .addGap(0, 0, Short.MAX_VALUE)))
+                        .addGap(0, 527, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -118,7 +114,7 @@ public class PanelGraficaPie extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(btnActualizar)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(panelGrafica, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
         );

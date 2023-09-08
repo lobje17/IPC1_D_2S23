@@ -28,7 +28,7 @@ public class DataSetValor {
         return ok;
     }
     
-    public int getPorcentaje(int total){
-        return 100*this.contador/total;
+    public int getCantidad(){
+        return this.contador;
     }
 }

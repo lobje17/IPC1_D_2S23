@@ -31,7 +31,7 @@ public class DataSetGrafica {
         Vehiculo v;
         boolean agregado;
         /* RECORRE LA LISTA DE VEHICULOS */
-        for (int i = 0; i < cantida; i++) {            
+        for (int i = 0; i < cantida; i++) {           
             v = lista.getVehiculos(i);
             agregado = false;
             /* RECORRE LA LISTA DE DATASET */

@@ -222,9 +222,7 @@ public class PanelDescuentos extends javax.swing.JPanel {
     }//GEN-LAST:event_btncargaDatosActionPerformed
 
     private void btnCargamasivaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCargamasivaActionPerformed
-        // TODO add your handling code here:
-        String path = texto.Buscar();
-        texto.cargarDescuentos(path, datosEnviados.listDescuentos);
+        datosEnviados.cargarMasivaDescuentos();
         llenarTabla();
         Mensaje("Datos cargados");
     }//GEN-LAST:event_btnCargamasivaActionPerformed

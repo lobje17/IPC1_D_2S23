@@ -4,6 +4,7 @@
  */
 package Grafico.Admin;
 
+import Archivos.PDF;
 import Clases.DatosEnviados;
 import Clases.Vehiculos.Vehiculo;
 import javax.swing.JOptionPane;
@@ -108,6 +109,7 @@ public class PanelVehiculos extends javax.swing.JPanel {
         jScrollPane1 = new javax.swing.JScrollPane();
         tablaVehiculos = new javax.swing.JTable();
         btnEliminar = new javax.swing.JButton();
+        btnCreaPDF = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(0, 0, 102));
 
@@ -175,6 +177,16 @@ public class PanelVehiculos extends javax.swing.JPanel {
             }
         });
 
+        btnCreaPDF.setBackground(new java.awt.Color(204, 0, 0));
+        btnCreaPDF.setFont(new java.awt.Font("Times New Roman", 3, 12)); // NOI18N
+        btnCreaPDF.setForeground(new java.awt.Color(255, 255, 255));
+        btnCreaPDF.setText("PDF");
+        btnCreaPDF.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCreaPDFActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -193,7 +205,9 @@ public class PanelVehiculos extends javax.swing.JPanel {
                         .addComponent(btnAgregar, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(btnEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 56, Short.MAX_VALUE)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(btnCreaPDF)
+                        .addGap(0, 59, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -205,7 +219,8 @@ public class PanelVehiculos extends javax.swing.JPanel {
                     .addComponent(btnCargarDatos)
                     .addComponent(btnCargaMasiva)
                     .addComponent(btnAgregar)
-                    .addComponent(btnEliminar))
+                    .addComponent(btnEliminar)
+                    .addComponent(btnCreaPDF))
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 322, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -221,7 +236,9 @@ public class PanelVehiculos extends javax.swing.JPanel {
     }//GEN-LAST:event_btnCargarDatosActionPerformed
 
     private void btnCargaMasivaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCargaMasivaActionPerformed
-        // TODO add your handling code here:
+        datosEnviados.cargarMasivaVehiculos();
+        llenarTabla();
+        Mensaje("Datos cargados");
     }//GEN-LAST:event_btnCargaMasivaActionPerformed
 
     private void btnAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarActionPerformed
@@ -235,11 +252,17 @@ public class PanelVehiculos extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_btnEliminarActionPerformed
 
+    private void btnCreaPDFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCreaPDFActionPerformed
+        PDF pdf = new PDF();
+        pdf.CrearDoc("Archivos//Lista Vehiculos", datosEnviados.listVehiculos);
+    }//GEN-LAST:event_btnCreaPDFActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAgregar;
     private javax.swing.JButton btnCargaMasiva;
     private javax.swing.JButton btnCargarDatos;
+    private javax.swing.JButton btnCreaPDF;
     private javax.swing.JButton btnEliminar;
     private javax.swing.JButton btnGuardarDatos;
     private javax.swing.JScrollPane jScrollPane1;
