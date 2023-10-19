@@ -13,4 +13,8 @@ export class AutorService {
   registro(autor:any){
     return this.http.post<any>(`${this.baseUrl}/registrar`, autor)
   }
+
+  obtener(){
+    return this.http.get<any>(`${this.baseUrl}/obtener`)
+  }
 }

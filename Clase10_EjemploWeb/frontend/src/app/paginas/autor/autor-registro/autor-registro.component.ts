@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
+import { Router } from '@angular/router';
 import { AutorService } from 'src/app/Servicios/Autor/autor.service';
 
 @Component({
@@ -13,7 +14,8 @@ export class AutorRegistroComponent {
 
   constructor(
     private fb:FormBuilder,
-    private usuarioServicio:AutorService
+    private usuarioServicio:AutorService,
+    private router:Router
     ){
     this.autor = this.fb.group({
       nombre: [''],
@@ -32,5 +34,11 @@ export class AutorRegistroComponent {
         console.log(error)
       }
     )
+  }
+
+  
+
+  regresar(){
+    this.router.navigate(['/autores'])
   }
 }

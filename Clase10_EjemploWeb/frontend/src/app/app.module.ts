@@ -9,13 +9,17 @@ import { AutorResgistradosComponent } from './paginas/autor/autor-resgistrados/a
 import { LibroRegistroComponent } from './paginas/libro/libro-registro/libro-registro.component';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { AutorPerfilComponent } from './Paginas/Autor/autor-perfil/autor-perfil.component';
+import { LibroListaComponent } from './paginas/libro/libro-lista/libro-lista.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     AutorRegistroComponent,
     AutorResgistradosComponent,
-    LibroRegistroComponent
+    LibroRegistroComponent,
+    AutorPerfilComponent,
+    LibroListaComponent
   ],
   imports: [
     BrowserModule,

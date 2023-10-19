@@ -1,1 +1,19 @@
-<p>autor-resgistrados works!</p>
+<h1>Autores registrados</h1>
+
+<div>
+    <table>
+        <!-- ENCABEZADO -->
+        <tr>
+            <th>ID</th>
+            <th>Nombre</th>
+            <th>Correo</th>
+        </tr>
+        <!-- CONTENIDO -->
+        <tr *ngFor="let autor of autores; let i = index">
+            <th>{{ i }}</th>
+            <th>{{ autor.nombre }}</th>
+            <th>{{ autor.correo }}</th>
+        </tr>
+    </table>
+    <button type="button" (click)="regresar()">Regresar</button>
+</div>

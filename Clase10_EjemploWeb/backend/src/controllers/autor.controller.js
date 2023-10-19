@@ -28,7 +28,8 @@ const registrarAutor = (req, resp) => {
 
     if(registrado){
         resp.status(201).json({
-            mensaje: "Se registro correctmente"
+            mensaje: "Se registro correctmente",
+            autores: autores
         })
     }
     else{
