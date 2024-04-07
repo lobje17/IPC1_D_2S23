@@ -1,1 +1,23 @@
-<p>libro-registro works!</p>
+<h1>Registro de libros</h1>
+
+<form [formGroup]="libro" (ngSubmit)="registrar()">
+    <div class="form-group">
+        <label for="exampleInputEmail1">Nombre</label>
+        <input  type="text"
+                class="form-control"
+                id="nombre"
+                formControlName="nombre"
+                placeholder="Nombre">
+    </div>
+    <div class="form-group">
+        <label for="exampleInputPassword1">Descripcion</label>
+        <input type="text"
+                class="form-control"
+                id="desc"
+                formControlName="desc"
+                placeholder="Descripcion">
+    </div>
+    <button type="submit" class="btn btn-success">Aceptar</button>
+    
+    <button type="button" class="btn btn-warning" (click)="regresar()">Ver libros</button>
+</form>

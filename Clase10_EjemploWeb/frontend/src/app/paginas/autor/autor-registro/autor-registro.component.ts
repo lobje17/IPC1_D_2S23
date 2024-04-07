@@ -19,7 +19,9 @@ export class AutorRegistroComponent {
     ){
     this.autor = this.fb.group({
       nombre: [''],
-      correo: ['']
+      correo: [''],
+      password: [''],
+      id:[0]
     })
   }
 
@@ -28,7 +30,10 @@ export class AutorRegistroComponent {
     this.usuarioServicio.registro(this.autor.value).subscribe(
       (response)=>{
         console.log(response)
-        console.log('registrado')
+        if(response.estado=='Ok'){
+          console.log('registrado')
+          this.router.navigate(['/login'])
+        }
       },
       (error)=>{
         console.log(error)
@@ -36,9 +41,7 @@ export class AutorRegistroComponent {
     )
   }
 
-  
-
   regresar(){
-    this.router.navigate(['/autores'])
+    this.router.navigate(['/login'])
   }
 }

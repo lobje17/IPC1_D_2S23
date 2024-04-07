@@ -10,6 +10,10 @@ export class AutorService {
     private http: HttpClient
   ) { }
 
+  login(autor:any){
+    return this.http.post<any>(`${this.baseUrl}/login`, autor)
+  }
+
   registro(autor:any){
     return this.http.post<any>(`${this.baseUrl}/registrar`, autor)
   }

@@ -1,6 +1,6 @@
-<h1>Registro</h1>
+<h1>Login</h1>
 
-<form [formGroup]="autor" (ngSubmit)="registrar()">
+<form [formGroup]="autor" (ngSubmit)="login()">
     <div class="form-group">
         <label for="exampleInputEmail1">Nombre</label>
         <input  type="text"
@@ -8,14 +8,6 @@
                 id="nombre"
                 formControlName="nombre"
                 placeholder="Nombre">
-    </div>
-    <div class="form-group">
-        <label for="exampleInputPassword1">Correo</label>
-        <input type="text"
-                class="form-control"
-                id="correo"
-                formControlName="correo"
-                placeholder="correo">
     </div>
     <div class="form-group">
         <label for="exampleInputPassword1">Contraseña</label>
@@ -27,5 +19,5 @@
     </div>
     <button type="submit" class="btn btn-success">Aceptar</button>
     
-    <button type="button" class="btn btn-warning" (click)="regresar()">Regresar</button>
+    <button type="button" class="btn btn-warning" (click)="registrar()">Registrarse</button>
 </form>

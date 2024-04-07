@@ -9,8 +9,9 @@ import { AutorResgistradosComponent } from './paginas/autor/autor-resgistrados/a
 import { LibroRegistroComponent } from './paginas/libro/libro-registro/libro-registro.component';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { AutorPerfilComponent } from './Paginas/Autor/autor-perfil/autor-perfil.component';
 import { LibroListaComponent } from './paginas/libro/libro-lista/libro-lista.component';
+import { AutorLoginComponent } from './paginas/autor/autor-login/autor-login.component';
+import { AutorMiperfilComponent } from './paginas/autor/autor-miperfil/autor-miperfil.component';
 
 @NgModule({
   declarations: [
@@ -18,8 +19,9 @@ import { LibroListaComponent } from './paginas/libro/libro-lista/libro-lista.com
     AutorRegistroComponent,
     AutorResgistradosComponent,
     LibroRegistroComponent,
-    AutorPerfilComponent,
-    LibroListaComponent
+    LibroListaComponent,
+    AutorLoginComponent,
+    AutorMiperfilComponent
   ],
   imports: [
     BrowserModule,

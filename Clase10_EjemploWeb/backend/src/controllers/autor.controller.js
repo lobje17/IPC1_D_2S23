@@ -1,4 +1,4 @@
-const { buscar, registrar, autores } = require('../db/autor.db')
+const { buscar, registrar, autores, login } = require('../db/autor.db')
 
 const obtenerAutores = (req, resp) => {
     resp.status(200).json({
@@ -7,10 +7,12 @@ const obtenerAutores = (req, resp) => {
     })
 }
 
+
+
 const buscarAutor = (req, resp) => {
     const encontrado = buscar(req.body)
     
-    if(encontrado){
+    if(encontrado.id==0){
         resp.status(201).json({
             mensaje: "Ok",
             data: encontrado
@@ -23,17 +25,25 @@ const buscarAutor = (req, resp) => {
     }
 }
 
+const loginAutor = (req, resp) => {
+    const encontrado = login(req.body)
+
+    resp.status(200).json(encontrado)
+}
+
 const registrarAutor = (req, resp) => {
     const registrado = registrar(req.body)
 
-    if(registrado){
+    if(registrado.id!=0){
         resp.status(201).json({
+            estado: 'Ok',
             mensaje: "Se registro correctmente",
-            autores: autores
+            data: registrado
         })
     }
     else{
-        resp.status(409).json({
+        resp.status(200).json({
+            estado: 'Error',
             mensaje: "Ya existe un usuario con el mismo nombre"
         })
     }
@@ -42,5 +52,6 @@ const registrarAutor = (req, resp) => {
 module.exports = {
     obtenerAutores,
     buscarAutor,
-    registrarAutor
+    registrarAutor,
+    loginAutor
 }

@@ -1,1 +1,19 @@
-<p>libro-lista works!</p>
+<h1>Libros registrados</h1>
+
+<div>
+    <table>
+        <!-- ENCABEZADO -->
+        <tr>
+            <th>ID</th>
+            <th>Nombre</th>
+            <th>Descripcion</th>
+        </tr>
+        <!-- CONTENIDO -->
+        <tr *ngFor="let libro of libros; let i = index">
+            <th>{{ i }}</th>
+            <th>{{ libro.nombre }}</th>
+            <th>{{ libro.desc }}</th>
+        </tr>
+    </table>
+    <button type="button" (click)="regresar()">Regresar</button>
+</div>
